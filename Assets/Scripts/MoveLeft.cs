@@ -6,19 +6,21 @@ public class MoveLeft : MonoBehaviour
 {
 
     public float speed;
-
+    private float leftBound = -10;
 
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Vector3 newPosition = transform.position + new Vector3(-1 *Time.deltaTime*speed);
-        //transform.position = newPosition;
-
         transform.Translate(Vector3.left * Time.deltaTime * speed);
+
+        //Destroy obstacles when they are off screen
+        if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
