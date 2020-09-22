@@ -22,4 +22,19 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Score"))
+        {
+            //increase score
+            //play sound
+        }
+        if (col.gameObject.CompareTag("Obstacle")) 
+        {
+            //game over
+            //play sound
+        }
+
+    }
 }
