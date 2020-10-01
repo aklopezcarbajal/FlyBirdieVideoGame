@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject obstaclePrefab;
+    private GameManager gameManager;
+
     private float spawnDelay = 2f;
     private float spawnInterval = 1.5f;
     public float spawnX;
@@ -12,6 +14,7 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         InvokeRepeating("SpawnObject", spawnDelay, spawnInterval);
     }
 
@@ -22,8 +25,11 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnObject()
     {
-        Vector3 spawnPosition = new Vector3(spawnX, Random.Range(-spawnY, spawnY), 0);
+        if (gameManager.gameOn)
+        {
+            Vector3 spawnPosition = new Vector3(spawnX, Random.Range(-spawnY, spawnY), 0);
 
-        Instantiate(obstaclePrefab, spawnPosition, obstaclePrefab.transform.rotation);
+            Instantiate(obstaclePrefab, spawnPosition, obstaclePrefab.transform.rotation);
+        }
     }
 }

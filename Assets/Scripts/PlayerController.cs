@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
+    private GameManager gameManager;
     public float force;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = gameObject.GetComponent<Rigidbody2D>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -28,11 +30,13 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.CompareTag("Score"))
         {
             //increase score
+            gameManager.score++;
             //play sound
         }
         if (col.gameObject.CompareTag("Obstacle")) 
         {
             //game over
+            gameManager.gameOn = false;
             //play sound
         }
 
