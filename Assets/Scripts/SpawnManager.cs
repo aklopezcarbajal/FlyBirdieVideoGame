@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     private float spawnDelay = 2f;
     private float spawnInterval = 1.5f;
     public float spawnX;
-    public float spawnY;
+    public float offset;
 
     void Start()
     {
@@ -27,7 +27,8 @@ public class SpawnManager : MonoBehaviour
     {
         if (gameManager.gameOn)
         {
-            Vector3 spawnPosition = new Vector3(spawnX, Random.Range(-spawnY, spawnY), 0);
+            float offsetY = Random.Range(-offset, offset);
+            Vector3 spawnPosition = new Vector3(spawnX, offsetY , 0);
 
             Instantiate(obstaclePrefab, spawnPosition, obstaclePrefab.transform.rotation);
         }

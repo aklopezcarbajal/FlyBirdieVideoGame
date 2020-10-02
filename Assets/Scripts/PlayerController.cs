@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))//GetButtonDown("Fire1")
         {
-            playerRb.AddForce(transform.up * force);
+            playerRb.AddForce(Vector2.up * force);
         }
         
     }
