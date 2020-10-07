@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2ff8b720a7202754aac353dc187bab88
+guid: bfa29ea45e7e3cb42877f9c2f64d88c8
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: MINECRAFT PE
+  fontName: Gamer
   fontNames:
-  - MINECRAFT PE
+  - Gamer
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
