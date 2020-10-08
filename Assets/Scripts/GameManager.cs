@@ -6,7 +6,13 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public bool gameOn;
+    // UI elements
+    public GameObject startUI;
+    public GameObject countdownUI;
+    public GameObject gameOverUI;
+    public Text scoreText;
+
+    public bool gameOn = false;
     public int score;
 
     //public TextMeshProUGUI scoreText;
@@ -32,6 +38,7 @@ public class GameManager : MonoBehaviour
         //StartCoroutine(SpawnTarget());
         score = 0;
         //titleScreen.gameObject.SetActive(false);
+        //something happens whrn start button is hit
     }
 
     public void UpdateScore()

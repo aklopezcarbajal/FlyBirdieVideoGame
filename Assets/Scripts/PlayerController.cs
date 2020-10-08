@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
     private GameManager gameManager;
+    private Vector3 startPosition;
     public float force;
 
     // Start is called before the first frame update
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = gameObject.GetComponent<Rigidbody2D>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -20,7 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))//GetButtonDown("Fire1")
         {
-            playerRb.AddForce(Vector2.up * force);
+            playerRb.AddForce(Vector2.up * force);///ForceMode2D.Force
         }
         
     }
