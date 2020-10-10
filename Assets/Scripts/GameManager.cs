@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 {
     // UI elements
     public GameObject startUI;
-    public GameObject countdownUI;
     public GameObject getReadyUI;
     public GameObject gameOverUI;
     public Text scoreText;
@@ -20,21 +19,18 @@ public class GameManager : MonoBehaviour
     private Vector2 zeroGravity = new Vector2(0f, 0f);
     private Vector2 gravity = new Vector2(0, -9.81f);
 
-    //public TextMeshProUGUI scoreText;
-    //public TextMeshProUGUI gameOverText;
-
     // Start is called before the first frame update
     void Start()
     {
         Physics2D.gravity = zeroGravity;
         startUI.SetActive(true);
-
+        getReadyUI.SetActive(false);
+        gameOverUI.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void StartGame()
@@ -44,21 +40,12 @@ public class GameManager : MonoBehaviour
 
         //spawnRate /= difficulty;
         //StartCoroutine(SpawnTarget());
-
-        //un-freeze player
-        score = 0;
     }
 
     IEnumerator getReadyDelay()
     {
-        //Print the time of when the function is first called.
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
-
-        //Wait for 3 seconds.
+        //Wait for 3 seconds
         yield return new WaitForSeconds(3);
-
-        //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
 
         //Fade away sprites
         float fadeTime = 2.0f;
@@ -74,8 +61,9 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         
-        getReadyUI.SetActive(false); //deactivate getReady
-        gameOn = true; //Start game
+        getReadyUI.SetActive(false);
+        //return sprites to their original color
+        GameOn();
     }
 
     public void GetReady()
@@ -86,15 +74,39 @@ public class GameManager : MonoBehaviour
         StartCoroutine(getReadyDelay() );
     }
 
-    public void UpdateScore()
+    public void GameOn()
     {
-        //scoreText.text = "Score: " + score;
+        //Start game
+        gameOn = true;
+        //un-freeze player
+        Physics2D.gravity = gravity;
+        //Set score
+        score = 0;
+    }
+
+    public void IncreaseScore()
+    {
+        score++;
+        scoreText.text = score.ToString();
+    }
+
+    public void GameOver()
+    {
+        gameOn = false;
+        gameOverUI.SetActive(true);
+        int savedHighscore = PlayerPrefs.GetInt("highscore");
+        if(score > savedHighscore)
+        {
+            PlayerPrefs.SetInt("highscore", score);
+        }
+
     }
 
     public void RestartGame()
     {
         ///reset score text
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameOverUI.SetActive(false);
     }
 
 }
