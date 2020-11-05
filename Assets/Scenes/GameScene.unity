@@ -1218,8 +1218,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startUI: {fileID: 1817096021}
   getReadyUI: {fileID: 347294748}
-  gameOverUI: {fileID: 338522891}
   scoreText: {fileID: 650407286}
+  gameOverUI: {fileID: 338522891}
+  finalScore: {fileID: 1805057658}
+  highscore: {fileID: 740806788}
+  medal:
+  - {fileID: 1080291482}
+  - {fileID: 1762079839}
+  - {fileID: 879082237}
   gameOn: 0
   score: 0
 --- !u!4 &486746009
@@ -1546,7 +1552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &650407285
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1843,7 +1849,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2117,7 +2123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &879082236
 Transform:
   m_ObjectHideFlags: 0
@@ -2798,7 +2804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1305161162
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4489,7 +4495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1762079838
 Transform:
   m_ObjectHideFlags: 0
@@ -4683,7 +4689,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

@@ -10,8 +10,12 @@ public class GameManager : MonoBehaviour
     // UI elements
     public GameObject startUI;
     public GameObject getReadyUI;
-    public GameObject gameOverUI;
     public Text scoreText;
+
+    public GameObject gameOverUI;
+    public Text finalScore;
+    public Text highscore;
+    public SpriteRenderer[] medal;
 
     public bool gameOn = false;
     public int score;
@@ -93,12 +97,31 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOn = false;
+        scoreText.enabled = false;
         gameOverUI.SetActive(true);
+
+        bool newHighscore = false;
         int savedHighscore = PlayerPrefs.GetInt("highscore");
         if(score > savedHighscore)
         {
             PlayerPrefs.SetInt("highscore", score);
+            newHighscore = true;
         }
+
+        //Display final score and highscore
+        int stringLen = 6;
+        finalScore.text = score.ToString().PadLeft(stringLen, '0');
+        highscore.text = savedHighscore.ToString().PadLeft(stringLen, '0');
+
+        //Assign a medal according to the score
+        if (newHighscore)
+            medal[2].enabled = true;
+        else if (score <= 100)
+            medal[0].enabled = true;
+        else if (score > 100 && score < 1000)
+            medal[1].enabled = true;
+        else if (score <= 1000)
+            medal[2].enabled = true;
 
     }
 
