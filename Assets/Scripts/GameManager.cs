@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
         startUI.SetActive(false);
         GetReady();
 
-        //spawnRate /= difficulty;
         //StartCoroutine(SpawnTarget());
     }
 
@@ -98,13 +97,16 @@ public class GameManager : MonoBehaviour
     {
         gameOn = false;
         scoreText.enabled = false;
+
+        for (int i = 0; i < medal.Length; i++)
+            medal[i].enabled = false;
         gameOverUI.SetActive(true);
 
         bool newHighscore = false;
         int savedHighscore = PlayerPrefs.GetInt("highscore");
         if(score > savedHighscore)
         {
-            PlayerPrefs.SetInt("highscore", score);
+            PlayerPrefs.SetInt("highscore", 0);// score); ***testing
             newHighscore = true;
         }
 
@@ -115,14 +117,21 @@ public class GameManager : MonoBehaviour
 
         //Assign a medal according to the score
         if (newHighscore)
+        {
             medal[2].enabled = true;
+        }
         else if (score <= 100)
+        {
             medal[0].enabled = true;
+        }
         else if (score > 100 && score < 1000)
+        {
             medal[1].enabled = true;
+        }
         else if (score <= 1000)
+        {
             medal[2].enabled = true;
-
+        }
     }
 
     public void RestartGame()

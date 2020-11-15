@@ -28,7 +28,7 @@ public class SpawnManager : MonoBehaviour
         if (gameManager.gameOn)
         {
             float offsetY = Random.Range(-offset, offset);
-            Vector3 spawnPosition = new Vector3(spawnX, offsetY , 0);
+            Vector3 spawnPosition = new Vector3(spawnX, offsetY , 100);
 
             Instantiate(obstaclePrefab, spawnPosition, obstaclePrefab.transform.rotation);
         }
