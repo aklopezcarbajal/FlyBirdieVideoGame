@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         startUI.SetActive(true);
         getReadyUI.SetActive(false);
         gameOverUI.SetActive(false);
+        PlayerPrefs.SetInt("highscore", 0); //***quitar
     }
 
     // Update is called once per frame
@@ -48,10 +49,10 @@ public class GameManager : MonoBehaviour
     IEnumerator getReadyDelay()
     {
         //Wait for 3 seconds
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         //Fade away sprites
-        float fadeTime = 2.0f;
+        float fadeTime = 1.5f;
 
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / fadeTime)
         {
@@ -74,13 +75,14 @@ public class GameManager : MonoBehaviour
         //Display tutorial and text
         getReadyUI.SetActive(true);
         //Delay a couple of seconds
+        gameOn = true;
         StartCoroutine(getReadyDelay() );
     }
 
     public void GameOn()
     {
         //Start game
-        gameOn = true;
+        //gameOn = true;
         //un-freeze player
         Physics2D.gravity = gravity;
         //Set score

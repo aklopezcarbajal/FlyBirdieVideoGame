@@ -8,7 +8,16 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     private Vector3 startPosition = new Vector3(-2.5f, 0.0f, 0.0f);
     public float force;
-    
+
+    public AudioClip scoreSound;
+    public AudioClip crashSound;
+
+    private AudioSource source;
+
+    void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -32,15 +41,14 @@ public class PlayerController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Score") && gameManager.gameOn)
         {
-            //increase score
             gameManager.IncreaseScore();
-            //play sound
+            source.PlayOneShot(scoreSound, 0.5f);
         }
-        if (col.gameObject.CompareTag("Obstacle")) 
+        if (col.gameObject.CompareTag("Obstacle") && gameManager.gameOn) 
         {
             //Game over
             gameManager.GameOver();
-            //play sound
+            source.PlayOneShot(crashSound, 0.5f);
         }
 
     }
