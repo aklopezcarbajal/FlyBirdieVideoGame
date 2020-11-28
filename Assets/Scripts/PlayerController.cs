@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip crashSound;
 
     private AudioSource source;
+    public Animator playerAnimator;
 
     void Awake()
     {
@@ -22,8 +23,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerRb = gameObject.GetComponent<Rigidbody2D>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        playerRb       = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
+        gameManager    = GameObject.Find("GameManager").GetComponent<GameManager>();
         transform.position = startPosition;
     }
 
@@ -43,12 +45,14 @@ public class PlayerController : MonoBehaviour
         {
             gameManager.IncreaseScore();
             source.PlayOneShot(scoreSound, 0.5f);
+            playerAnimator.SetTrigger("hit_trigger");
         }
         if (col.gameObject.CompareTag("Obstacle") && gameManager.gameOn) 
         {
             //Game over
             gameManager.GameOver();
             source.PlayOneShot(crashSound, 0.5f);
+            playerAnimator.SetTrigger("hit_trigger");
         }
 
     }
