@@ -11,9 +11,9 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip scoreSound;
     public AudioClip crashSound;
+    public AudioClip hitGround;
 
     private AudioSource source;
-    public Animator playerAnimator;
 
     void Awake()
     {
@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb       = GetComponent<Rigidbody2D>();
-        playerAnimator = GetComponent<Animator>();
         gameManager    = GameObject.Find("GameManager").GetComponent<GameManager>();
         transform.position = startPosition;
     }
@@ -34,7 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))//gameManager.gameOn)//GetButtonDown("Fire1")
         {
-            if(gameManager.gameOn)
+            if(gameManager.gameOn && gameManager.gravityOn)
                 playerRb.AddForce(Vector2.up * force);///ForceMode2D.Force
         }
     }
@@ -45,14 +44,16 @@ public class PlayerController : MonoBehaviour
         {
             gameManager.IncreaseScore();
             source.PlayOneShot(scoreSound, 0.5f);
-            playerAnimator.SetTrigger("hit_trigger");
         }
         if (col.gameObject.CompareTag("Obstacle") && gameManager.gameOn) 
         {
-            //Game over
             gameManager.GameOver();
             source.PlayOneShot(crashSound, 0.5f);
-            playerAnimator.SetTrigger("hit_trigger");
+        }
+        if (col.gameObject.CompareTag("Ground") && gameManager.gameOn)
+        {
+            gameManager.GameOver();
+            source.PlayOneShot(hitGround, 0.5f);
         }
 
     }

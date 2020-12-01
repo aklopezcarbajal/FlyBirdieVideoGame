@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
     private GameManager gameManager;
 
     private float spawnDelay = 2f;
-    private float spawnInterval = 1.5f;
+    private float spawnInterval = 1.75f;
     public float spawnX;
     public float offset;
 

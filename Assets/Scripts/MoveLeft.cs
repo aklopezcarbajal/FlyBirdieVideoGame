@@ -5,22 +5,38 @@ using UnityEngine;
 public class MoveLeft : MonoBehaviour
 {
 
+    private GameManager gameManager;
     public float speed;
     private float leftBound = -10;
 
     void Start()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
     }
 
     void Update()
     {
-        transform.Translate(Vector3.left * Time.deltaTime * speed);
-
-        //Destroy obstacles when they are off screen
-        if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle"))
+        if(gameObject.CompareTag("Obstacle"))
         {
-            Destroy(gameObject);
+            if (gameManager.gameOn)
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
+
+            //Destroy obstacles when they are off screen
+            if (transform.position.x < leftBound)
+            {
+                Destroy(gameObject);
+
+            }
         }
+        else if (gameObject.CompareTag("Ground") && gameManager.gameOn)
+        {
+            transform.Translate(Vector3.left * Time.deltaTime * speed);
+        }
+        else
+        {
+            transform.Translate(Vector3.left * Time.deltaTime * speed);
+        }
+
     }
 }

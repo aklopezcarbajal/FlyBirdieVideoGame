@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     private Vector2 zeroGravity = new Vector2(0f, 0f);
     private Vector2 gravity = new Vector2(0, -9.81f);
+    public bool gravityOn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,8 +43,6 @@ public class GameManager : MonoBehaviour
     {
         startUI.SetActive(false);
         GetReady();
-
-        //StartCoroutine(SpawnTarget());
     }
 
     IEnumerator getReadyDelay()
@@ -66,7 +65,6 @@ public class GameManager : MonoBehaviour
         }
         
         getReadyUI.SetActive(false);
-        //return sprites to their original color
         GameOn();
     }
 
@@ -81,10 +79,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOn()
     {
-        //Start game
-        //gameOn = true;
         //un-freeze player
         Physics2D.gravity = gravity;
+        gravityOn = true;
         //Set score
         score = 0;
     }
@@ -138,7 +135,6 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        ///reset score text
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameOverUI.SetActive(false);
     }
