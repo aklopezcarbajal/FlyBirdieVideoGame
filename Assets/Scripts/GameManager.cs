@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
         Physics2D.gravity = gravity;
         gravityOn = true;
         //Set score
+        scoreText.gameObject.SetActive(true);
         score = 0;
     }
 
@@ -101,33 +102,30 @@ public class GameManager : MonoBehaviour
             medal[i].enabled = false;
         gameOverUI.SetActive(true);
 
+        //Not suited for WebGL
         bool newHighscore = false;
         int savedHighscore = PlayerPrefs.GetInt("highscore");
         if(score > savedHighscore)
         {
-            PlayerPrefs.SetInt("highscore", 0);// score); ***testing
+            PlayerPrefs.SetInt("highscore", score);
             newHighscore = true;
         }
 
         //Display final score and highscore
         int stringLen = 6;
         finalScore.text = score.ToString().PadLeft(stringLen, '0');
-        highscore.text = savedHighscore.ToString().PadLeft(stringLen, '0');
+        //highscore.text = savedHighscore.ToString().PadLeft(stringLen, '0');
 
         //Assign a medal according to the score
-        if (newHighscore)
-        {
-            medal[2].enabled = true;
-        }
-        else if (score <= 100)
+        if (score <= 10)
         {
             medal[0].enabled = true;
         }
-        else if (score > 100 && score < 1000)
+        else if (score > 10 && score < 100)
         {
             medal[1].enabled = true;
         }
-        else if (score <= 1000)
+        else if (score <= 100)
         {
             medal[2].enabled = true;
         }

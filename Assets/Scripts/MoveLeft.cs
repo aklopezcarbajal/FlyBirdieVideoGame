@@ -29,9 +29,10 @@ public class MoveLeft : MonoBehaviour
 
             }
         }
-        else if (gameObject.CompareTag("Ground") && gameManager.gameOn)
+        else if (gameObject.CompareTag("Ground"))
         {
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
+            if (gameManager.gameOn)
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
         else
         {
