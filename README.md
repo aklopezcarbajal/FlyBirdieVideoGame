@@ -1,6 +1,6 @@
 # Fly Birdie Video Game
 
-<img src="/imgs/FlyBirdie_thumbnail.png" alt="FlyBirdie"/>
+<img src="/imgs/FlyBirdie_thumbnail.png" width="500" height="300" alt="FlyBirdie"/>
 
 Side-scrolling micro game, Flappy bird style. Developed in Unity 2D using C#.
 
@@ -10,7 +10,7 @@ Build in WebGL. Published in Unity Play: [Fly Birdie](https://play.unity.com/mg/
 
 * Use the space-bar or click to fly and avoid the obstacles.
 
-<img src="/imgs/FlyBirdie_gif.gif" alt="Demo"/>
+<img src="/imgs/FlyBirdie_gif.gif" width="500" height="300" alt="Demo"/>
 
 ## Assets
 
